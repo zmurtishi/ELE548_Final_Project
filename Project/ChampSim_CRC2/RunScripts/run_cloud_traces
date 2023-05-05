@@ -1,0 +1,65 @@
+#!/bin/bash
+
+#USE THIS RUN SCRIPT FOR CONFIG 3 
+echo "USAGE: ./run_traces <repl_executable_name>"
+REPL_NAME=$1
+#basepath
+BASEPATH=../
+TRACEPATH=../../traces
+BINPATH=$BASEPATH/bin
+RESULTPATH=$BASEPATH/results
+
+MNAME=`hostname`
+
+ 
+ #benchmarks
+#Spec2006benchmarks=( 400.perlbench 416.gamess 435.gromacs 445.gobmk 454.calculix 462.libquantum 471.omnetpp 483.xalancbmk 401.bzip2 429.mcf 436.cactusADM 447.dealII 456.hmmer 464.h264ref 473.astar 403.gcc 433.milc 437.leslie3d 450.soplex 458.sjeng 465.tonto 481.wrf 410.bwaves 434.zeusmp 444.namd 453.povray 459.GemsFDTD 470.lbm 482.sphinx3 )
+
+
+b403=`echo "$TRACEPATH/${Spec2006benchmarks[15]}.200m.gz"`
+b401=`echo "$TRACEPATH/${Spec2006benchmarks[8]}.200m.gz"`
+b400=`echo "$TRACEPATH/${Spec2006benchmarks[0]}.200m.gz"`
+b416=`echo "$TRACEPATH/${Spec2006benchmarks[1]}.200m.gz"`
+b429=`echo "$TRACEPATH/${Spec2006benchmarks[9]}.200m.gz"`
+b433=`echo "$TRACEPATH/${Spec2006benchmarks[16]}.200m.gz"`
+b434=`echo "$TRACEPATH/${Spec2006benchmarks[23]}.200m.gz"`
+b450=`echo "$TRACEPATH/${Spec2006benchmarks[18]}.200m.gz"`
+b456=`echo "$TRACEPATH/${Spec2006benchmarks[12]}.200m.gz"`
+b459=`echo "$TRACEPATH/${Spec2006benchmarks[26]}.200m.gz"`
+b462=`echo "$TRACEPATH/${Spec2006benchmarks[5]}.200m.gz"`
+b464=`echo "$TRACEPATH/${Spec2006benchmarks[13]}.200m.gz"`
+b470=`echo "$TRACEPATH/${Spec2006benchmarks[27]}.200m.gz"`
+b473=`echo "$TRACEPATH/${Spec2006benchmarks[14]}.200m.gz"`
+b482=`echo "$TRACEPATH/${Spec2006benchmarks[28]}.200m.gz"`
+b483=`echo "$TRACEPATH/${Spec2006benchmarks[7]}.200m.gz"`
+
+b504=`echo "$TRACEPATH/cassandra_core_0.trace.gz"`
+b505=`echo "$TRACEPATH/cassandra_core_1.trace.gz"`
+b506=`echo "$TRACEPATH/cassandra_core_2.trace.gz"`
+b507=`echo "$TRACEPATH/cassandra_core_3.trace.gz"`
+
+b508=`echo "$TRACEPATH/classification_core_0.trace.gz"`
+b509=`echo "$TRACEPATH/classification_core_1.trace.gz"`
+b510=`echo "$TRACEPATH/classification_core_2.trace.gz"`
+b511=`echo "$TRACEPATH/classification_core_3.trace.gz"`
+
+b512=`echo "$TRACEPATH/cloud9_core_0.trace.gz"`
+b513=`echo "$TRACEPATH/cloud9_core_1.trace.gz"`
+b514=`echo "$TRACEPATH/cloud9_core_2.trace.gz"`
+b515=`echo "$TRACEPATH/cloud9_core_3.trace.gz"`
+
+b516=`echo "$TRACEPATH/nutch_core_0.trace.gz"`
+b517=`echo "$TRACEPATH/nutch_core_1.trace.gz"`
+b518=`echo "$TRACEPATH/nutch_core_2.trace.gz"`
+b519=`echo "$TRACEPATH/nutch_core_3.trace.gz"`
+
+b520=`echo "$TRACEPATH/streaming_core_0.trace.gz"`
+b521=`echo "$TRACEPATH/streaming_core_1.trace.gz"`
+b522=`echo "$TRACEPATH/streaming_core_2.trace.gz"`
+b523=`echo "$TRACEPATH/streaming_core_3.trace.gz"`
+
+$BINPATH/$REPL_NAME -hide_heartbeat -c -warmup_instructions 100000000 -simulation_instructions 100000000 -traces $b504 $b505 $b506 $b507 > $RESULTPATH/cloudgroup2_$REPL_NAME &
+$BINPATH/$REPL_NAME -hide_heartbeat -c -warmup_instructions 100000000 -simulation_instructions 100000000 -traces $b508 $b509 $b510 $b511 > $RESULTPATH/cloudgroup3_$REPL_NAME &
+$BINPATH/$REPL_NAME -hide_heartbeat -c -warmup_instructions 100000000 -simulation_instructions 100000000 -traces $b512 $b513 $b514 $b515 > $RESULTPATH/cloudgroup4_$REPL_NAME &
+$BINPATH/$REPL_NAME -hide_heartbeat -c -warmup_instructions 100000000 -simulation_instructions 100000000 -traces $b516 $b517 $b518 $b519 > $RESULTPATH/cloudgroup5_$REPL_NAME &
+$BINPATH/$REPL_NAME -hide_heartbeat -c -warmup_instructions 100000000 -simulation_instructions 100000000 -traces $b520 $b521 $b522 $b523 > $RESULTPATH/cloudgroup6_$REPL_NAME &
